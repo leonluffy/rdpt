@@ -396,7 +396,7 @@ static int rdpt_opensock(char *name, rdpt_sockdata_t *cmd, int sock)
 {
 	rdpt_sockopen_t *subh = (rdpt_sockopen_t *)(cmd + 1);
 	const char *proxyurl = "proxy.h3c.com:8080";
-	const char *auth = "x10168:Xu87021709";
+	const char *auth = "xxxxx:xxxxxxxx";		// user:password
 	const char *url = "23.105.202.197:26550";
 
 	memset(subh, 0, sizeof(rdpt_sockopen_t));
