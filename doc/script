@@ -30,7 +30,7 @@ nameserver 8.8.8.8
 
 
 
-./configure --prefix=/home/x10168/rdp
+./configure
 make clean
 make -j4
 
