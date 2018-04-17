@@ -1104,7 +1104,7 @@ static void CALLBACK s_report(
   DWORD    dwTime
 )
 {
-	if (g_rdpt_ctx.state == RDPT_S_STATE_RST)
+	if (g_rdpt_ctx.state != RDPT_S_STATE_OK)
 		return;
 
 	char sendbuf[256];
@@ -1163,9 +1163,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				g_rdpt_ctx.client_pos.x, g_rdpt_ctx.client_pos.y);
 
 			return DefWindowProc(hwnd, message, wParam, lParam);
-		case WM_CLOSE:
-			tunnel_uninit();
-			return DefWindowProc(hwnd, message, wParam, lParam);
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
@@ -1179,6 +1176,16 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
         }
 #endif
+		case WM_CLOSE:
+		{
+			tunnel_uninit();
+			return DefWindowProc(hwnd, message, wParam, lParam);
+		}
+		case WM_KILLFOCUS:
+		{
+			PostQuitMessage(0);
+			break;
+		}
 
         // ----------------------- let windows do all other stuff
         default:
